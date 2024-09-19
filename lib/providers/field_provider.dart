@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../models/field.dart';
 
 class FieldProvider {
-  final List<Field> fields = [
+  static final List<Field> fields = [
     Field(
       id: "1",
       title: "Stadion",

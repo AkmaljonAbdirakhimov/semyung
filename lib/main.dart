@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:semyung/screens/home_screen.dart';
 
+import 'providers/bookins_provider.dart';
+
 void main() {
+  BookingsProvider.init();
   runApp(const MainApp());
 }
 

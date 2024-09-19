@@ -1,22 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:semyung/screens/field_details_screen.dart';
+import 'package:semyung/screens/profile_screen.dart';
 import '../providers/field_provider.dart';
 import '../models/field.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final scaffoldKey = GlobalKey();
+  int currentTabIndex = 0;
+
+  @override
   Widget build(BuildContext context) {
-    FieldProvider fieldProvider = FieldProvider();
-    List<Field> fields = fieldProvider.fields;
+    List<Field> fields = FieldProvider.fields;
 
     return Scaffold(
+      key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.blue,
         foregroundColor: Colors.white,
         title: const Text("SEMYUNG"),
+        actions: [Container()],
       ),
+      endDrawer: const ProfileScreen(),
+      drawerEnableOpenDragGesture: false,
       body: ListView.builder(
         padding: const EdgeInsets.all(20),
         itemCount: fields.length,
@@ -57,19 +69,34 @@ class HomeScreen extends StatelessWidget {
           );
         },
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.blue,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: "Bosh Sahifa",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: "Profil",
-          ),
-        ],
-      ),
+      bottomNavigationBar: Builder(builder: (context) {
+        return BottomNavigationBar(
+          selectedItemColor: Colors.blue,
+          currentIndex: currentTabIndex,
+          onTap: (value) {
+            // 0 = HOME
+            // 1 == PROFIL
+
+            setState(() {
+              currentTabIndex = value;
+            });
+            if (currentTabIndex == 1) {
+              // yon oynani ochib beradi
+              Scaffold.of(context).openEndDrawer();
+            }
+          },
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: "Bosh Sahifa",
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: "Profil",
+            ),
+          ],
+        );
+      }),
     );
   }
 }
