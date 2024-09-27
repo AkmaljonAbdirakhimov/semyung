@@ -26,4 +26,8 @@ class FieldProvider {
       endTime: const TimeOfDay(hour: 17, minute: 00),
     ),
   ];
+
+  static void addField(Field field) {
+    fields.add(field);
+  }
 }

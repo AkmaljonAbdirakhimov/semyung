@@ -32,11 +32,19 @@ class _FieldDetailsScreenState extends State<FieldDetailsScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.asset(
-              widget.field.image,
-              fit: BoxFit.cover,
-              width: double.infinity,
-            ),
+            widget.field.image.startsWith("http")
+                ? Image.network(
+                    widget.field.image,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: 200,
+                  )
+                : Image.asset(
+                    widget.field.image,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: 200,
+                  ),
             TableCalendar(
               calendarFormat: CalendarFormat.week,
               focusedDay: DateTime.now(),

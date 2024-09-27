@@ -18,7 +18,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     List<Field> fields = FieldProvider.fields;
-
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
@@ -29,6 +28,11 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       endDrawer: const ProfileScreen(),
       drawerEnableOpenDragGesture: false,
+      onEndDrawerChanged: (isOpened) {
+        if (isOpened == false) {
+          setState(() {});
+        }
+      },
       body: ListView.builder(
         padding: const EdgeInsets.all(20),
         itemCount: fields.length,
@@ -58,7 +62,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.blue.shade200,
                     borderRadius: BorderRadius.circular(16),
                     image: DecorationImage(
-                      image: AssetImage(field.image),
+                      image: field.image.startsWith("http")
+                          ? NetworkImage(field.image)
+                          : AssetImage(field.image),
                       fit: BoxFit.cover,
                     ),
                   ),
