@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "936478422045",
+    "project_id": "semyung-8ed5c",
+    "storage_bucket": "semyung-8ed5c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:936478422045:android:f186a10867ea4a201342f4",
+        "android_client_info": {
+          "package_name": "com.example.semyung"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9rn2zZehY5EnPnJlU4_pF3VyJbRqrUH0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
